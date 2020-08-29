@@ -61,8 +61,7 @@ class KodiSkill(MycroftSkill):
     @intent_handler('kodi.volume.intent')
     def handle_volume_intent(self, message):
         """Handle volume intent"""
-        # this looks a bit messy because extrat_number returns a list
-        facter = int(extract_number(message.data.get('number', [5])[0]))
+        facter = extract_number(message.data.get('number', 5))
         if re.search(r'\bdecrease|down\b', message.data.get('utterance')):
             self.log.debug('decrease volume by %d', facter)
             self.kctl.volume -= facter
