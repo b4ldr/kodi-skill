@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import re
+
 from kodictl import KodiCtl
 
 from adapt.intent import IntentBuilder
@@ -24,17 +26,14 @@ class KodiSkill(MycroftSkill):
     def handle_pause_intent(self, message):
         self.kctl.pause = True
 
-    @intent_handler(IntentBuilder('SubtitlesOnIntent')
-                    .require('SubtitlesKeyword').require('OnKeyword')
-                    .build())
-    def handle_subs_on(self, message):
-        self.kctl.subtitles = True
-
-    @intent_handler(IntentBuilder('SubtitlesOffIntent')
-                    .require('SubtitlesKeyword').require('OffKeyword')
-                    .build())
-    def handle_subs_off(self, message):
-        self.kctl.subtitles = False
+    @intent_handler('subtitles.intent')
+    def handle_subs(self, message):
+        if re.search(r'\bon|enable\b', message.data.get('utterance')):
+            self.kctl.subtitles = True
+        elif re.search(r'\boff|disable\b', message.data.get('utterance')):
+            self.kctl.subtitles = False
+        else:
+            self.kctl.subtitles = not self.kctl.subtitles
 
     def stop(self):
         pass
