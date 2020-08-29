@@ -1,2 +1,2 @@
-( ( enable | disable ) | (switch | turn) (on | off )) subtitles
-subtitles ( ( enable | disable ) | (on | off ))
+((enable | disable) | (switch | turn) (on | off)) subtitles
+subtitles ((enable | disable) | (on | off))

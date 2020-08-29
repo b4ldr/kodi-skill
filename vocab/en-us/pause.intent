@@ -1,2 +1,2 @@
-( pause | unpause ) ( | ( this | current )) { media }
-{ media } ( pause | unpause )
+(pause | unpause) ( | (this | current)) {media}
+{media} (pause | unpause)
