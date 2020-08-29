@@ -22,9 +22,9 @@ class KodiSkill(MycroftSkill):
     @intent_handler('pause.intent')
     def handle_pause_intent(self, message):
         pause = self.kctl.pause
-        if 'pause' in message.data.get('utterance'):
+        if 'pause' in message.data.get('utterance').split():
             pause = True
-        elif 'unpause' in message.data.get('utterance'):
+        elif 'unpause' in message.data.get('utterance').split():
             pause = False
         else:
             pause = not self.kctl.pause
