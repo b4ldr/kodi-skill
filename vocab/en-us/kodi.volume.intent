@@ -1,0 +1,4 @@
+kodi volume (up | down | increase | decrease) ( | by {number})
+kodi (up | down | increase | decrease) volume ( | by {number})
+(decrease | increase) kodi volume ( | by {number})
+(decrease | increase) volume on kodi ( | by {number})
