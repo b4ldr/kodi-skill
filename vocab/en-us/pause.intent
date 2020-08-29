@@ -1,0 +1,2 @@
+( pause | unpause ) { media }
+{ media } ( pause | unpause )
