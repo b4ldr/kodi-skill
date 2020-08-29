@@ -19,12 +19,14 @@ class KodiSkill(MycroftSkill):
             self.settings.get('password'),
             self.settings.get('tls', False))
 
-    @intent_handler(IntentBuilder("PauseIntent").require("PauseKeyword").build())
+    @intent_handler(IntentBuilder("PauseIntent").require("PauseKeyword"))
     def handle_pause_intent(self, message):
+        self.log.debug('pause')
         self.kctl.pause = True
 
-    @intent_handler(IntentBuilder("UnPauseIntent").require("UnPauseKeyword").build())
+    @intent_handler(IntentBuilder("UnPauseIntent").require("UnPauseKeyword"))
     def handle_unpause_intent(self, message):
+        self.log.debug('unpause')
         self.kctl.pause = False
 
     @intent_handler('subtitles.intent')
