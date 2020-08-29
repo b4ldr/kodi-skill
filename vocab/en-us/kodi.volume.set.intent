@@ -1,0 +1,3 @@
+kodi (set | update) volume ( | to ) {number}
+(set | update) kodi volume ( | to ) {number}
+(set | update) volume on kodi ( | to) {number}

@@ -69,6 +69,13 @@ class KodiSkill(MycroftSkill):
             self.log.debug('increase volume by %d', facter)
             self.kctl.volume += facter
 
+    @intent_handler('kodi.volume.set.intent')
+    def handle_volume_set_intent(self, message):
+        """Handle volume intent"""
+        volume = extract_number(message.data.get('number', self.kctl.volume))
+        self.log.debug('set volume to %d', volume)
+        self.kctl.volume = volume
+
     def stop(self):
         """Stop"""
 
