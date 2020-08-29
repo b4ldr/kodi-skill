@@ -19,6 +19,18 @@ class KodiSkill(MycroftSkill):
             self.settings.get('password'),
             self.settings.get('tls', False))
 
+    @intent_handler('mute.intent')
+    def handle_pause_intent(self, message):
+        muted = self.kctl.muted
+        if 'mute' in message.data.get('utterance').split():
+            muted = True
+        elif 'unmute' in message.data.get('utterance').split():
+            muted = False
+        else:
+            muted = not self.kctl.muted
+        self.log.debug('update muted to: %s', muted)
+        self.kctl.muted = muted
+
     @intent_handler('pause.intent')
     def handle_pause_intent(self, message):
         pause = self.kctl.pause
