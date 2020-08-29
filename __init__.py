@@ -3,12 +3,11 @@
 import re
 
 from kodictl import KodiCtl
-
-from adapt.intent import IntentBuilder
 from mycroft import intent_handler, MycroftSkill
 
 
 class KodiSkill(MycroftSkill):
+    """Class to manage kodi skill"""
 
     def initialize(self):
         """initialise kodictl object"""
@@ -20,7 +19,8 @@ class KodiSkill(MycroftSkill):
             self.settings.get('tls', False))
 
     @intent_handler('mute.intent')
-    def handle_pause_intent(self, message):
+    def handle_mute_intent(self, message):
+        """Handle mute intent"""
         muted = self.kctl.muted
         if 'mute' in message.data.get('utterance').split():
             muted = True
@@ -33,6 +33,7 @@ class KodiSkill(MycroftSkill):
 
     @intent_handler('pause.intent')
     def handle_pause_intent(self, message):
+        """Handle pause intent"""
         pause = self.kctl.pause
         if 'pause' in message.data.get('utterance').split():
             pause = True
@@ -45,6 +46,7 @@ class KodiSkill(MycroftSkill):
 
     @intent_handler('subtitles.intent')
     def handle_subtitles_intent(self, message):
+        """Handle subtitle intent"""
         subtitles = self.kctl.subtitles
         if re.search(r'\bon|enable\b', message.data.get('utterance')):
             subtitles = True
@@ -57,6 +59,7 @@ class KodiSkill(MycroftSkill):
 
     @intent_handler('kodi.volume.intent')
     def handle_volume_intent(self, message):
+        """Handle volume intent"""
         facter = int(message.data.get('number', 5))
         if re.search(r'\bdecrease|down\b', message.data.get('utterance')):
             self.log.debug('decrease volume by %d', facter)
@@ -66,8 +69,9 @@ class KodiSkill(MycroftSkill):
             self.kctl.volume += facter
 
     def stop(self):
-        pass
+        """Stop"""
 
 
 def create_skill():
+    """Create the skill"""
     return KodiSkill()
