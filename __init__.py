@@ -24,6 +24,18 @@ class KodiSkill(MycroftSkill):
     def handle_pause_intent(self, message):
         self.kctl.pause = True
 
+    @intent_handler(IntentBuilder('SubtitlesOnIntent')
+                    .require('SubtitlesKeyword').require('OnKeyword')
+                    .build())
+    def handle_subs_on(self, message):
+        self.kctl.subtitles = True
+
+    @intent_handler(IntentBuilder('SubtitlesOffIntent')
+                    .require('SubtitlesKeyword').require('OffKeyword')
+                    .build())
+    def handle_subs_off(self, message):
+        self.kctl.subtitles = False
+
     def stop(self):
         pass
 
