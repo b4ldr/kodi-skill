@@ -31,12 +31,15 @@ class KodiSkill(MycroftSkill):
 
     @intent_handler('subtitles.intent')
     def handle_subs(self, message):
+        subtitles = self.kctl.subtitles
         if re.search(r'\bon|enable\b', message.data.get('utterance')):
-            self.kctl.subtitles = True
+            subtitles = True
         elif re.search(r'\boff|disable\b', message.data.get('utterance')):
-            self.kctl.subtitles = False
+            subtitles = False
         else:
-            self.kctl.subtitles = not self.kctl.subtitles
+            subtitles = not self.kctl.subtitles
+        self.log.debug('update subtitles to: %s', subtitles)
+        self.kctl.subtitles = subtitles
 
     def stop(self):
         pass
