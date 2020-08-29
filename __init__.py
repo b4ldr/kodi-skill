@@ -4,7 +4,7 @@ import re
 
 from kodictl import KodiCtl
 from mycroft import intent_handler, MycroftSkill
-from mycroft.utils import extract_numbers
+from mycroft.util import extract_numbers
 
 
 class KodiSkill(MycroftSkill):
