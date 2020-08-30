@@ -45,6 +45,14 @@ class KodiSkill(MycroftSkill):
         self.log.debug('update pause to: %s', pause)
         self.kctl.pause = pause
 
+    @intent_handler('play.intent')
+    def handle_play_intent(self, message):
+        """Handle play intent"""
+        if 'play' in message.data.get('utterance').split():
+            self.kctl.play()
+        elif 'stop' in message.data.get('utterance').split():
+            self.kctl.stop()
+
     @intent_handler('subtitles.intent')
     def handle_subtitles_intent(self, message):
         """Handle subtitle intent"""

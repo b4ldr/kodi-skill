@@ -1,0 +1,2 @@
+(play | stop) ( | (this | current)) {media}
+{media} (play | stop)
